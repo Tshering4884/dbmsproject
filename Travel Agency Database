@@ -1,0 +1,43 @@
+CREATE TABLE Client (  
+    Client_ID INT PRIMARY KEY AUTO_INCREMENT,  
+    First_Name VARCHAR(50),  
+    Last_Name VARCHAR(50),  
+    Email VARCHAR(100),  
+    Phone_Number VARCHAR(15)  
+);  
+  
+CREATE TABLE Destination (  
+    Destination_ID INT PRIMARY KEY AUTO_INCREMENT,  
+    Destination_Name VARCHAR(100),  
+    Country VARCHAR(50),  
+    Description TEXT,  
+    Price_Per_Person DECIMAL(10, 2)  
+);  
+  
+CREATE TABLE Booking (  
+    Booking_ID INT PRIMARY KEY AUTO_INCREMENT,  
+    Client_ID INT,  
+    Destination_ID INT,  
+    Booking_Date DATE,  
+    Travel_Date DATE,  
+    Number_of_People INT,  
+    Total_Amount DECIMAL(10, 2),  
+    FOREIGN KEY (Client_ID) REFERENCES Client(Client_ID),  
+    FOREIGN KEY (Destination_ID) REFERENCES Destination(Destination_ID)  
+);  
+  
+CREATE TABLE Agency (  
+    Agency_ID INT PRIMARY KEY AUTO_INCREMENT,  
+    Agency_Name VARCHAR(100),  
+    Phone_Number VARCHAR(15),  
+    Email VARCHAR(100)  
+);  
+  
+CREATE TABLE Payment (  
+    Payment_ID INT PRIMARY KEY AUTO_INCREMENT,  
+    Booking_ID INT,  
+    Payment_Date DATE,  
+    Amount DECIMAL(10, 2),  
+    Payment_Method VARCHAR(50),  
+    FOREIGN KEY (Booking_ID) REFERENCES Booking(Booking_ID)  
+);  
